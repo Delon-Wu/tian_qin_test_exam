@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>测试考核</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        font-family: 'Raleway-Regular','Microsoft YaHei',sans-serif;
+        box-sizing: border-box;
+        color: #262b2e;
+    }
+    a{
+        text-decoration: none;
+        user-select: none;
+    }
+    html,body{
+        background-color: rgb(243, 232, 223);
+        width: 100%;
+        min-width: 850px;
+        height: 100%;
+        min-height: 900px;
+    }
+    header{
+        width: 100%;
+        height: 100px;
+        background-color:#fff;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 10%;
+    }
+    .logo-container img,.footer-logo-container img{
+        width: 80px;
+    }
+    .setting-btn img,.notification-btn img{
+        width:18px;
+    }
+    .setting-btn,.notification-btn{
+        display: block;
+        float: right;
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        text-align:center;
+        padding:11px;
+        transition: 0.5s ease-out;
+        -moz-transition: 0.5s ease-out;
+    }
+    .setting-btn:hover,.notification-btn:hover{
+        transform: translate(-1px,-1px);
+    }
+    .setting-btn:active,.notification-btn:active{
+        transform: translate(1px,1px);
+    }
+    .header-btns-group{
+        font-size: 0;
+    }
+    .logout-btn{
+        display: block;
+        background-color: #f92525;
+        width: 110px;
+        height: 40px;
+        float: right;
+        text-align: center;
+        border-radius: 2px;
+        color: #fff;
+        margin-left: 40px;
+        font-size: 13px;
+        line-height: 40px;
+        transition: 0.3s ease-in-out;
+        -moz-transition: 0.3s ease-in-out;
+    }
+    .logout-btn:hover{
+        background-color: #d62323;
+    }
+    main{
+        width: 80%;
+        height: 100%;
+        /* background-color: #fff; */
+        margin: auto;
+        margin-top: 6%;
+        font-size: 0;
+    }
+    .titlle{
+        color: #262b2e;
+        font-size: 30px;
+    }
+    .titlle-discription{
+        font-size: 15px;
+        color:#262b2e;
+        opacity: 0.7;
+    }
+    .content-header-container{
+        width:100%;
+        position: relative;
+        margin-bottom: 5%;
+    }
+    .content-header-container::after{
+	  content:'';
+	  display:block;
+	  height:0;
+      visibility:hidden;
+      /* 清楚浮动 */
+	  clear:both;
+	}
+    .titlle-container{
+        float: left;
+    }
+    .navigation-bar{
+        position: absolute;
+        right: 0;
+        list-style: none;
+        font-size: 0;
+        padding: 0;
+        width: 100%;
+        text-align: right;
+    }
+    .navigation-bar li{
+        display: inline-block;
+        font-size: 13px;
+        margin-left:3%;
+        line-height: 24px;
+        position: relative;
+    }
+    .navigation-bar li a{
+        transition: all 0.5s ease-in-out;
+        -webkit-transition: all 0.5s ease-in-out;
+    }
+    .navigation-bar li a:hover{
+        border-bottom:2px solid rgb(163, 156, 147);
+    }
+    .smaller-section,.biger-section{
+        background-color: rgb(190, 166, 146);
+    }
+    .smaller-section{
+        width: 49%;
+        display: inline-block;
+    }
+    .row_1{
+        height: 17%;
+    }
+    .rotation-player-container{
+        text-align: center;
+    }
+    .rotation-player{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    .rotation-player ul{
+        list-style: none;
+        padding: 0;
+        width: 100%;
+        position: absolute;
+    }
+    .rotation-player ul li{
+        position: absolute;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .rotation-player ul li img{
+        width: 100%;
+    }
+    .player-nav{
+	  width:100%;
+	  bottom:10px;
+	  text-align:center;
+	  position:absolute;
+	}
+    .player-nav span{
+	  display:inline-block;
+	  margin:0 7px;
+	  border-radius:50%;
+	  width:10px;
+	  height:10px;
+	  font-size:6;
+	  background:rgba(255,255,255,.3);
+	  transition:all .5s;
+	  -webkit-transition:all .5s;
+	  cursor:pointer;
+	  user-select:none;
+	  -webkit-user-select:none;
+	}
+	.player-nav span.active{
+	  background:#fff;
+	}
+    .chart{
+        height:23%;
+    }
+    main :nth-child(3),main :nth-child(6){
+        margin-left: 2%;
+    }
+    .biger-section{
+        margin:2% 0;
+    }
+    footer{
+        width:100%;
+        min-height: 15%;
+        background-color: #202124;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    }
+    .footer-content-container{
+        width: 54%;
+        font-size: 0;
+        margin:auto;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap:wrap;
+    }
+    .column-list{
+        list-style: none;
+        padding: 0;
+        display: inline-block;
+        text-align: left;
+        /* padding-left: 15%; */
+    }
+    .column-list li a{
+        font-size: 13px;
+        color: #fff;
+        line-height: 2;
+    }
+    .footer-logo-container{
+        font-size: 13px;
+        color: #fff;
+        position: absolute;
+        left: -20%;
+    }
+</style>
+<body>
+    <header>
+        <a class="logo-container" href="#"><img src="images/icon/logo.png"></a>
+        <div class="header-btns-group">
+            <a href="#" class="logout-btn">Log Out</a>
+            <a href="#" class="notification-btn"><img src="images/icon/notification.png"></a>
+            <a href="#" class="setting-btn"><img src="images/icon/setting.png"></a>
+        </div>
+    </header>
+    <main>
+        <div class="content-header-container">
+            <div class="titlle-container">
+                <p class="titlle">Audience Overview<br><span class="titlle-discription">Roseville, CA</span></p>
+            </div>
+            <ul class="navigation-bar">
+                <li><a href="#">DASHBORD</a></li>
+                <li><a href="#">PROJECT</a></li>
+                <li><a href="#">CALENDAR</a></li>
+                <li><a href="#">MAILBOX</a></li>
+                <li><a href="#">SETTING</a></li>
+            </ul>
+        </div>
+        
+        <div class="smaller-section rotation-player-container row_1">
+            <div class="rotation-player" >
+                <ul>
+                    <li><img src="images/playing-guitar.jpg"></li>
+                    <li><img src="images/vernazza.jpg"></li>
+                    <li><img src="images/ping-wall.jpeg"></li>
+                    <li><img src="images/maounta-.jpg"></li>
+                </ul>
+	            <div class="player-nav"></div>
+            </div>
+        </div>
+        <div class="smaller-section row_1"></div>
+        <div class="biger-section chart"></div>
+        <div class="smaller-section chart"></div>
+        <div class="smaller-section chart"></div>
+    </main>
+    <footer>
+        <div class="footer-content-container">
+            <a class="footer-logo-container" href="#"><img src="images/icon/logo.png"></a>
+            <ul class="column-list">
+                <li><a href="#">NEWS</a></li>
+                <li><a href="#">CHANNELS</a></li>
+                <li><a href="#">OVERVIEW</a></li>
+                <li><a href="#">TIMELINE</a></li>
+            </ul>
+            <ul class="column-list">
+                <li><a href="#">NEWS</a></li>
+                <li><a href="#">CHANNELS</a></li>
+                <li><a href="#">OVERVIEW</a></li>
+                <li><a href="#">TIMELINE</a></li>
+            </ul>
+            <ul class="column-list">
+                <li><a href="#">NEWS</a></li>
+                <li><a href="#">CHANNELS</a></li>
+                <li><a href="#">OVERVIEW</a></li>
+                <li><a href="#">TIMELINE</a></li>
+            </ul>
+            <ul class="column-list">
+                <li><a href="#">NEWS</a></li>
+                <li><a href="#">CHANNELS</a></li>
+                <li><a href="#">OVERVIEW</a></li>
+                <li><a href="#">TIMELINE</a></li>
+            </ul>
+            <ul class="column-list">
+                <li><a href="#">NEWS</a></li>
+                <li><a href="#">CHANNELS</a></li>
+                <li><a href="#">OVERVIEW</a></li>
+                <li><a href="#">TIMELINE</a></li>
+            </ul>
+            <ul class="column-list">
+                <li><a href="#">NEWS</a></li>
+                <li><a href="#">CHANNELS</a></li>
+                <li><a href="#"></a></li>
+                <li><a href="#"></a></li>
+            </ul>
+            </ul>
+        </div>
+    </footer>
+    <script src="/lib/jquery.3.4.1.js"></script>
+    <script>
+        $(document).ready(function(){
+            var duration=3000;
+            var speed=1000;
+            var width=$('.rotation-player').width();
+            var curIndex=0;
+            var totalIndex=$('.rotation-player>ul>li').length;
+            var timer;
+            // 将所有照片连在一起,生成滚动条
+            $('.rotation-player>ul>li').each(function(index){
+                $(this).css("left",index*width+"px");
+                $('.player-nav').append("<span>"+(index+1)+"</span>");
+            });
+            // 默认第一张照片对应的按钮亮起
+            $('.player-nav>span').eq(0).addClass('active');
+            // 克隆一张照片放在最后
+            var firstCild=$('.rotation-player>ul>li').eq(0).clone();
+            $('.rotation-player>ul').append(firstCild);
+            firstCild.css("left",totalIndex*width+"px");
+
+            $('.player-nav>span').each(function(index){
+                $(this).attr("index",index);
+                $(this).click(function(){
+                    curIndex=$(this).attr('index')-1;
+                    clearTimeout(timer);
+                    move();
+                })
+            });
+            timer=setTimeout(move,duration);
+            // 鼠标悬停停止播放
+            $('.rotation-player>ul').mouseover(function(){
+                clearTimeout(timer);
+            });
+            $('.rotation-player>ul').mouseout(function(){
+                timer = setTimeout(move,duration);
+            });
+            function move(){
+                curIndex++;
+                if(curIndex>totalIndex){
+                    curIndex=1;
+                    $('.rotation-player>ul').css("left","0px");
+                }
+                for(var i=0;i<totalIndex;i++){
+                    $('.player-nav>span').eq(i).removeClass("active");
+                }
+                if(curIndex===totalIndex){
+                    $('.player-nav>span').eq(0).addClass("active");
+                }else{
+                    $('.player-nav>span').eq(curIndex).addClass("active");
+                }
+                $('.rotation-player>ul').animate({left:width*curIndex*-1+"px"},speed);
+                timer=setTimeout(move,duration+speed);
+            }
+        });
+        
+    </script>
+</body>
+</html>
