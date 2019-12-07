@@ -135,7 +135,7 @@
         border-bottom:3px solid rgb(163, 156, 147);
     }
     .smaller-section,.biger-section{
-        background-color: rgb(190, 166, 146);
+        background-color: #fff;
     }
     .smaller-section{
         width: 49%;
@@ -143,10 +143,10 @@
     }
     .row_1{
         height: 17%;
+        overflow: hidden;
     }
     .rotation-player{
         position: relative;
-        overflow: hidden;
         text-align: center;
         border:10px solid #fff;
     }
@@ -223,8 +223,66 @@
     main > div:nth-of-type(3),main > div:nth-of-type(6){
         margin-left: 2%;
     }
+    .request-header{
+        width: 100%;
+        height: 80px;
+        padding: 0 4%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom:1px solid rgb(243, 232, 223);
+        /* justify-content: space-between; */
+    }
+    .request-header p{
+        display: inline-block;
+        color: #262b2e;
+        font-size: 18px;
+    }
+    .view-all-btn{
+        display: inline-block;
+        color: #2a3033c9;
+        text-align: center;
+        font-size: 18px;
+        line-height: 36px;
+        width: 92px;
+        height: 40px;
+        border: 2px solid rgb(243,232,223);
+        background-color:#fff;
+        transition: all .4s ease-in-out;
+        -webkit-transition: all .4s ease-in-out;
+    }
+    .view-all-btn:hover{
+        background-color: #f92525;
+        color: #fff;
+    }
+    .view-all-btn:active{
+        font-size: 20px;
+
+    }
+    .request-table{
+        width: 100%;
+        font-size: 13px;
+        text-align: left;
+        padding: 0 4%;
+        line-height: 1.55;
+    }
+    .request-table td{
+        color: #262b2e63;
+    }
+    .request-table tbody tr :nth-child(3),.request-table thead tr :nth-child(3){
+        text-align: right;
+    }
+    .request-table tbody tr :nth-child(3){
+        width: 11%;
+        height: 14%;
+        line-height: 1;
+        text-align: center;
+        color: #fff;
+        background-color: #5dd054;
+    }
     .biger-section{
         margin:2% 0;
+        width: 100%;
     }
     footer{
         width:100%;
@@ -296,7 +354,25 @@
             <div class="turn-right-btn"><span>&gt</span></div>
         </div>
 
-        <div class="smaller-section row_1"></div>
+        <div class="smaller-section row_1 request-container">
+            <div class="request-header">
+                <p>Suport Request</p>
+                <a class="view-all-btn" href="#">View all</a>
+            </div>
+            <table class="request-table">
+                <thead>
+                    <tr>
+                        <th>TIME</th>
+                        <th>USER NAME</th>
+                        <th>STATUS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>9:45pm</td><td>info@design.com</td><td>solved</td></tr>
+                    <tr><td>9:45pm</td><td>info@design.com</td><td>solved</td></tr>
+                </tbody>
+            </table>
+        </div>
         <div class="biger-section chart"></div>
         <div class="smaller-section chart"></div>
         <div class="smaller-section chart"></div>
@@ -344,6 +420,8 @@
         </div>
     </footer>
     <script src="/lib/jquery.3.4.1.js"></script>
+    <script src="lib/echart.all.js"></script>
+    <script src="lib/wonderland.js"></script>
     <script>
         $(document).ready(function(){
             var duration = 3000;
@@ -418,7 +496,135 @@
                 timer=setTimeout(move,duration+speed);
             }
         });
-        
+        var lineGraph = echarts.init(document.getElementsByClassName('biger-section')[0],'wonderland')
+        var lineGraphOption = {
+            title: {
+                text: '折线图堆叠'
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['邮件营销','联盟广告','视频广告','直接访问','搜索引擎']
+            },
+            grid: {
+                left: '3%',
+                right: '4%',
+                bottom: '3%',
+                containLabel: true
+            },
+            toolbox: {
+                feature: {
+                    saveAsImage: {}
+                }
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: ['Mon','Tue','Wed','Thur','Fri','Sat','Sun']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [
+                {
+                    name:'邮件营销',
+                    type:'line',
+                    stack: '总量',
+                    data:[120, 132, 101, 134, 90, 230, 210]
+                },
+                {
+                    name:'联盟广告',
+                    type:'line',
+                    stack: '总量',
+                    data:[220, 182, 191, 234, 290, 330, 310]
+                },
+                {
+                    name:'视频广告',
+                    type:'line',
+                    stack: '总量',
+                    data:[150, 232, 201, 154, 190, 330, 410]
+                },
+                {
+                    name:'直接访问',
+                    type:'line',
+                    stack: '总量',
+                    data:[320, 332, 301, 334, 390, 330, 320]
+                },
+                {
+                    name:'搜索引擎',
+                    type:'line',
+                    stack: '总量',
+                    data:[820, 932, 901, 934, 1290, 1330, 1320]
+                }
+            ]
+        };
+        lineGraph.setOption(lineGraphOption);
+
+        var roundGraph = echarts.init(document.getElementsByClassName('smaller-section')[2]);
+        roundGraphOption = {
+            tooltip: {
+                trigger: 'item',
+                formatter: "{a} <br/>{b}: {c} ({d}%)"
+            },
+            legend: {
+                orient: 'vertical',
+                x: 'left',
+                data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+            },
+            series: [
+                {
+                    name:'访问来源',
+                    type:'pie',
+                    color: ['#4ea397', '#22c3aa', '#7bd9a5', '#2d91d1', '#55b9f9'],
+                    radius: ['50%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data:[
+                        {value:335, name:'直接访问'},
+                        {value:310, name:'邮件营销'},
+                        {value:234, name:'联盟广告'},
+                        {value:135, name:'视频广告'},
+                        {value:1548, name:'搜索引擎'}
+                    ]
+                }
+            ]
+        };
+        roundGraph.setOption(roundGraphOption);
+
+        var histogram = echarts.init(document.getElementsByClassName('smaller-section')[3]);
+        histogramOption = {
+            xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+                type: 'value'
+            },
+            series: [{
+                data: [120, 200, 150, 80, 70, 110, 130],
+                type: 'bar',
+                color: [ '#2d91d1', '#55b9f9'],
+            }]
+        };
+        histogram.setOption(histogramOption);
     </script>
 </body>
 </html>
