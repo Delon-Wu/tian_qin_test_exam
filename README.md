@@ -4,10 +4,3 @@
 
 <img src="images/demo.png" width="80%">  
 
-* 全程使用原生`js+jQ` 
-* `Echart`为现学现用  
-
-
-
-
-**感谢**
